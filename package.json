@@ -1,0 +1,12 @@
+{
+  "name": "hangout-verification-bot",
+  "version": "1.0.0",
+  "description": "The Hangout Spot Discord Verification Bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.21.0"
+  }
+}
