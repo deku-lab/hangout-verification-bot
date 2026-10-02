@@ -136,5 +136,23 @@ client.on("guildMemberAdd", async (member) => {
         console.error("Welcome message error:", error);
     }
 });
+client.on("error", (error) => {
+    console.error("Discord Client Error:", error);
+});
 
+client.on("warn", (warning) => {
+    console.warn("Discord Warning:", warning);
+});
+
+client.on("shardDisconnect", (event, shardId) => {
+    console.log(`Discord disconnected. Shard: ${shardId}`, event);
+});
+
+client.on("shardReconnecting", (shardId) => {
+    console.log(`Discord reconnecting. Shard: ${shardId}`);
+});
+
+client.on("shardReady", (shardId) => {
+    console.log(`Discord shard ready. Shard: ${shardId}`);
+});
 client.login(TOKEN);
