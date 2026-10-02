@@ -109,5 +109,32 @@ client.on("messageCreate", async (message) => {
     // await message.delete();
     await message.channel.send(text);
 });
+client.on("guildMemberAdd", async (member) => {
+    try {
+        const channel = await member.guild.channels.fetch("1552826169374679161");
+
+        if (!channel) return;
+
+        const embed = new EmbedBuilder()
+            .setDescription(
+                `🏠 **NEW PERSON JUST PULLED UP!**\n\n` +
+                `Welcome **${member}** to **The Hangout Spot**!\n\n` +
+                `Grab a seat, join the conversation and enjoy the vibes.\n\n` +
+                `**Glad to have you here.** 🤍`
+            )
+            .setColor(0xFFFFFF)
+            .setThumbnail(
+                member.user.displayAvatarURL({ dynamic: true })
+            )
+            .setImage("https://cdn.discordapp.com/attachments/862414113376174081/1555466190447448064/bb641d7a-3725-4d5d-8f84-b9a6055e31c8.gif?backend=b2&ex=6ac0a046&is=6abf4ec6&hm=4d5cb16f66e03b68e172aa6b37a4f29e0cdeceb32dbe51929acc19ed79812559&");
+
+        await channel.send({
+            embeds: [embed]
+        });
+
+    } catch (error) {
+        console.error("Welcome message error:", error);
+    }
+});
 
 client.login(TOKEN);
