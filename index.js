@@ -81,7 +81,7 @@ client.on("messageCreate", async (message) => {
     const text = message.content.slice(6).trim();
     if (!text) return;
 
-    await message.delete();
+    // await message.delete();
     await message.channel.send(text);
 });
 
