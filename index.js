@@ -27,6 +27,20 @@ client.once("ready", async () => {
     try {
         const channel = await client.channels.fetch(CHANNEL_ID);
 
+        const messages = await channel.messages.fetch({ limit: 50 });
+
+        const existingMessage = messages.find(
+            msg =>
+                msg.author.id === client.user.id &&
+                msg.embeds.length > 0 &&
+                msg.embeds[0].title === "🔐 Server Verification"
+        );
+
+        if (existingMessage) {
+            console.log("Verification message already exists.");
+            return;
+        }
+
         const embed = new EmbedBuilder()
             .setTitle("🔐 Server Verification")
             .setDescription(
@@ -43,8 +57,9 @@ client.once("ready", async () => {
         await message.react("✅");
 
         console.log("Verification message sent successfully!");
+
     } catch (error) {
-        console.error("Error:", error);
+        console.error("Verification setup error:", error);
     }
 });
 
