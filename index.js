@@ -73,3 +73,14 @@ client.on("messageReactionAdd", async (reaction, user) => {
 });
 
 client.login(TOKEN);
+client.on("messageCreate", async (message) => {
+    if (message.author.bot) return;
+    if (!message.content.startsWith("!send ")) return;
+
+    const text = message.content.slice(6).trim();
+    if (!text) return;
+
+    await message.delete();
+
+    await message.channel.send(text);
+});
